@@ -316,7 +316,7 @@ IF EXISTS
 END;
 
 ALTER TABLE dbo.tblTransactionFact
-ADD CONSTRAINT FK_tblTransactionFact_branch_id_tblBranchDim_branch_id FOREIGN KEY(branch_id) REFERENCES dbo.tblBranchDim(branch_id);
+ADD CONSTRAINT FK_tblTransactionFact_branch_id_tblTransactionFact_branch_id FOREIGN KEY(branch_id) REFERENCES dbo.tblBranchDim(branch_id);
 
 
 --IF EXISTS

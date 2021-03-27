@@ -819,7 +819,7 @@ IF EXISTS
 END; 
 
 ALTER TABLE dbo.tblBranchDim
-ADD CONSTRAINT PK_tblBranchDim PRIMARY KEY(branch_id);
+ADD CONSTRAINT PK_tblBranchDim PRIMARY KEY(area_id);
 
 
 
@@ -1029,7 +1029,7 @@ IF EXISTS
 END;
 
 ALTER TABLE dbo.tblAccountDim
-ADD CONSTRAINT FK_tblAccountDim_branch_id_tblBranchDim_branch_id FOREIGN KEY(branch_id) REFERENCES dbo.tblBranchDim(branch_id);
+ADD CONSTRAINT FK_tblAccountDim_branch_idtblAccountDim_branch_id_tblTransactionFact_branch_id FOREIGN KEY(branch_id) REFERENCES dbo.tblBranchDim(branch_id);
 
 
 IF EXISTS
@@ -1099,7 +1099,7 @@ IF EXISTS
 
 END;
 
-ALTER TABLE dbo.tblBranchDim
+ALTER TABLE dbo.tblBranchDim WITH CHECK 
 ADD CONSTRAINT FK_tblBranchDim_area_id_tblAreaDim_area_id FOREIGN KEY(area_id) REFERENCES dbo.tblAreaDim(area_id);
 
 
