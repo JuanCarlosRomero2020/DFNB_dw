@@ -90,7 +90,8 @@ SELECT acct_id
 --	 , tad.loan_amt;
 
 SELECT v.*
-  FROM dbo.v_denorm_acct_cust_rel_prod_branch_region as v;
+  FROM dbo.v_denorm_acct_cust_rel_prod_branch_region as v
+  ORDER BY [tran_fee_amt_sum] DESC;
 
 
 -- Q1: Which Accounts, Customers, Relationships, Products, or Branches generate the most value for the organization?
@@ -99,7 +100,7 @@ SELECT v.*
 
 SELECT TOP 1000 v.*
   FROM dbo.v_q1_acct as v
-ORDER BY v.combined_value_rank;
+ORDER BY v.combined_value_rank ASC;
 
 -- Customer
 -- Relationship
