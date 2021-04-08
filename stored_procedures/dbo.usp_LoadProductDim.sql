@@ -1,20 +1,16 @@
 USE [DFNB3]
 GO
 
-/****** Object:  StoredProcedure [dbo].[usp_LoadProductDim]    Script Date: 3/25/2021 12:19:36 AM ******/
+/****** Object:  StoredProcedure [dbo].[usp_LoadProductDim]    Script Date: 4/7/2021 10:04:31 PM ******/
 DROP PROCEDURE [dbo].[usp_LoadProductDim]
 GO
 
-/****** Object:  StoredProcedure [dbo].[usp_LoadProductDim]    Script Date: 3/25/2021 12:19:36 AM ******/
+/****** Object:  StoredProcedure [dbo].[usp_LoadProductDim]    Script Date: 4/7/2021 10:04:31 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
-
-
-
 
 
 CREATE PROCEDURE [dbo].[usp_LoadProductDim]
@@ -57,20 +53,14 @@ BEGIN
 
     INSERT INTO dbo.tblProductDim
            SELECT DISTINCT 
-                  s.prod_id, 
-                  'Unknown' AS prod_desc
+                  s.prod_id,
+				  prod_code,
+                  prod_desc
            FROM dbo.stg_p1 AS s
-           ORDER BY s.prod_id;
-    INSERT INTO dbo.tblBranchDim
-           SELECT DISTINCT 
-                  s.acct_branch_id AS branch_id, 
-                  s.acct_branch_code AS branch_code, 
-                  s.acct_branch_desc AS branch_desc, 
-                  s.acct_branch_add_id AS branch_add_id, 
-                  s.acct_region_id AS region_id, 
-                  s.acct_area_id AS area_id
-           FROM dbo.stg_p1 AS s
-           ORDER BY branch_id;
+		         INNER JOIN 
+		         stg.PRODUCT_PROFILES as p ON s.prod_id = p.prod_id
+           ORDER BY 1;
+    
 END;   
 GO
 

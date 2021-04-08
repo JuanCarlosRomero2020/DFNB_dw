@@ -1,11 +1,19 @@
-DROP VIEW dbo.v_denorm_acct_cust_rel_prod_branch_region;
+USE [DFNB3]
 GO
 
-CREATE VIEW dbo.v_denorm_acct_cust_rel_prod_branch_region
+/****** Object:  View [dbo].[v_denorm_acct_cust_rel_prod_branch_region]    Script Date: 4/7/2021 10:38:07 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE OR ALTER VIEW [dbo].[v_denorm_acct_cust_rel_prod_branch_region]
 AS
 /*****************************************************************************************************************
-NAME:    dbo.v_denorm_acct_cust_rel_prod_branch_region.sql
-PURPOSE: Denormalize a number of entities
+NAME:    DataAnalysisForQ1Q2Q3.sql
+PURPOSE: Data Analysis for Q1, Q2, Q3
 
 SUPPORT: Jaussi Consulting LLC
          www.jaussiconsulting.net
@@ -14,7 +22,7 @@ SUPPORT: Jaussi Consulting LLC
 MODIFICATION LOG:
 Ver       Date         Author       Description
 -         -
-1.0       03/31/2021   JCRomero     1. Built this script for LDS BC IT 243
+1.0       12/15/2019   JJAUSSI      1. Built this script for LDS BC IT 243
 
 
 RUNTIME: 
@@ -38,9 +46,9 @@ SELECT tad.acct_id
 	 , YEAR(tcd.cust_since_date) as cust_since_year
 	 , tcd.cust_rel_id as pri_cust_rel_id
 	 , tad.prod_id
-	-- , tpd.prod_code
+	 , tpd.prod_code
 	 , tpd.prod_desc
-	-- , tpd.prod_code + ' - ' + tpd.prod_desc as prod
+	 , tpd.prod_code + ' - ' + tpd.prod_desc as prod
 	 , tad.branch_id
 	 , tbd.branch_code
 	 , tbd.branch_desc
@@ -67,9 +75,9 @@ GROUP BY tad.acct_id
 	 , YEAR(tcd.cust_since_date)
 	 , tcd.cust_rel_id
 	 , tad.prod_id
-	 --, tpd.prod_code
+	 , tpd.prod_code
 	 , tpd.prod_desc
-	 --, tpd.prod_code + ' - ' + tpd.prod_desc
+	 , tpd.prod_code + ' - ' + tpd.prod_desc
 	 , tad.branch_id
 	 , tbd.branch_code
 	 , tbd.branch_desc
@@ -79,3 +87,5 @@ GROUP BY tad.acct_id
 	 , tad.loan_amt;
 
 GO
+
+

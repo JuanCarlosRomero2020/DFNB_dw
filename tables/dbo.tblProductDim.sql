@@ -43,9 +43,10 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[tblProductDim](
-	[prod_id] [smallint] NOT NULL,
+	prod_id [smallint] NOT NULL,
+	prod_code [varchar](50) NULL,
 	[prod_desc] [varchar](50) NULL,
- CONSTRAINT [PK_tblProductDim] PRIMARY KEY CLUSTERED 
+  CONSTRAINT [PK_tblProductDim] PRIMARY KEY CLUSTERED 
 (
 	[prod_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
